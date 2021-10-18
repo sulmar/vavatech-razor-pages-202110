@@ -7,4 +7,8 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Vavatech.RazorPages.Models\Vavatech.RazorPages.Models.csproj" />
+  </ItemGroup>
+
 </Project>

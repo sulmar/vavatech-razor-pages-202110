@@ -1,0 +1,28 @@
+﻿@page
+@model WebApp.Pages.Customers.IndexModel
+@{
+}
+
+
+<table class="table table-hover table-striped table-dark">
+    <thead>
+        <tr>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var customer in Model.Customers)
+        {
+            <tr>
+                <td>@customer.FirstName</td>
+                <td>@customer.LastName</td>
+            </tr>
+
+        }
+
+
+    </tbody>
+</table>
