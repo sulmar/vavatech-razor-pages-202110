@@ -21,6 +21,18 @@ namespace Vavatech.RazorPages.FakeRepositories
         {
             throw new NotImplementedException();
         }
+
+        public override void Update(Product entity)
+        {
+            Product product = Get(entity.Id);
+
+            product.Name = entity.Name;
+            product.Size = entity.Size;
+            product.Color = entity.Color;
+            product.UnitPrice = entity.UnitPrice;
+            product.Weight = entity.Weight;
+            product.BarCode = entity.BarCode;
+        }
     }
 
 

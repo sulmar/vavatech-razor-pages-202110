@@ -3,11 +3,35 @@
 @{
 }
 
-<ul>
 
-    @foreach (var product in Model.Products)
-    {
-        <li>@product.Name</li>
-    }
+<table class="table table-hover table-striped table-dark">
+    <thead>
+        <tr>
+            <th>Nazwa</th>
+            <th>Kolor</th>
+            <th>Rozmiar</th>
+            <td>Cena</td>
+        </tr>
+    </thead>
 
-</ul>
+    <tbody>
+
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Color</td>
+                <td>@product.Size</td>
+                <td>@product.UnitPrice</td>                
+                <td>
+                    <div>                        
+                        <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@product.Id">Edycja</a>
+                    </div>
+                </td>
+            </tr>
+
+        }
+
+
+    </tbody>
+</table>

@@ -33,8 +33,8 @@ namespace WebApp
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
             services.AddSingleton<Faker<Address>, AddressFaker>();
 
-            services.AddScoped<IProductRepository, FakeProductRepository>();
-            services.AddScoped<Faker<Product>, ProductFaker>();
+            services.AddSingleton<IProductRepository, FakeProductRepository>();
+            services.AddSingleton<Faker<Product>, ProductFaker>();
 
             services.AddRazorPages();
         }
