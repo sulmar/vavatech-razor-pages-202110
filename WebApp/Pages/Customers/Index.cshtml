@@ -26,7 +26,10 @@
                 <td>@customer.Salary</td>
                 <td>@customer.IsRemoved</td>
                 <td>
-                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@customer.Id">Podgląd</a>
+                    <div>
+                        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@customer.Id">Podgląd</a>
+                        <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@customer.Id">Edycja</a>
+                    </div>
                 </td>
             </tr>
 
