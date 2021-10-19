@@ -3,21 +3,17 @@ using System;
 using System.Collections.Generic;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
+using System.Linq;
 
 namespace Vavatech.RazorPages.FakeRepositories
 {
-    public class FakeCustomerRepository : ICustomerRepository
+
+    public class FakeCustomerRepository : FakeEntityRepository<Customer>, ICustomerRepository
     {
-        private readonly IEnumerable<Customer> customers;
-
         public FakeCustomerRepository(Faker<Customer> faker)
+            : base(faker)
         {
-            customers = faker.Generate(100);
-        }
-
-        public IEnumerable<Customer> Get()
-        {
-            return customers;
+            
         }
     }
 

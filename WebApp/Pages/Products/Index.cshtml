@@ -1,0 +1,13 @@
+﻿@page
+@model WebApp.Pages.Products.IndexModel
+@{
+}
+
+<ul>
+
+    @foreach (var product in Model.Products)
+    {
+        <li>@product.Name</li>
+    }
+
+</ul>

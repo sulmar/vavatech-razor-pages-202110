@@ -4,14 +4,9 @@ using Vavatech.RazorPages.Models;
 
 namespace Vavatech.RazorPages.IRepositories
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository : IEntityRepository<Customer>
     {
-        IEnumerable<Customer> Get();
-
-        //Customer Get(int id);
-        //void Add(Customer customer);
-        //void Update(Customer customer);
-        //void Remove(int id);
+       
     }
 
 }

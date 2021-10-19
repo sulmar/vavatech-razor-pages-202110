@@ -32,6 +32,9 @@ namespace WebApp
             services.AddScoped<ICustomerRepository, FakeCustomerRepository>();
             services.AddScoped<Faker<Customer>, CustomerFaker>();
 
+            services.AddScoped<IProductRepository, FakeProductRepository>();
+            services.AddScoped<Faker<Product>, ProductFaker>();
+
             services.AddRazorPages();
         }
 

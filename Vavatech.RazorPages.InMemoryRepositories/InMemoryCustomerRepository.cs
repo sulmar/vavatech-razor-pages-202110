@@ -8,6 +8,11 @@ namespace Vavatech.RazorPages.InMemoryRepositories
 {
     public class InMemoryCustomerRepository : ICustomerRepository
     {
+        public void Add(Customer entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal Calculate()
         {
             return 0;
@@ -25,6 +30,21 @@ namespace Vavatech.RazorPages.InMemoryRepositories
             };
 
             return customers;
+        }
+
+        public Customer Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Customer entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }
