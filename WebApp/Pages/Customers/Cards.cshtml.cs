@@ -9,30 +9,20 @@ using Vavatech.RazorPages.Models;
 
 namespace WebApp.Pages.Customers
 {
-    public class DetailsModel : PageModel
+    public class CardsModel : PageModel
     {
-        //public int Id { get; set; }
-
-        //public void OnGet(int id)
-        //{
-        //    Id = id;
-        //}
-
-        [BindProperty(SupportsGet = true)]
-        public int Id { get; set; }
-
-        public Customer Customer { get; set; }
+        public IEnumerable<Customer> Customers { get; set; }
 
         private readonly ICustomerRepository customerRepository;
 
-        public DetailsModel(ICustomerRepository customerRepository)
+        public CardsModel(ICustomerRepository customerRepository)
         {
             this.customerRepository = customerRepository;
         }
 
         public void OnGet()
         {
-            Customer = customerRepository.Get(Id);
+            Customers = customerRepository.Get();
         }
     }
 }

@@ -1,7 +1,25 @@
-﻿@page
+﻿@page "/sklep/klienci/{id:int}"
 @model WebApp.Pages.Customers.DetailsModel
 @{
 }
 
 
-<h2>Customer Id = @Model.Id</h2>
+
+<div class="card">
+
+    <div class="card-header">
+        <h4>@Model.Customer.FirstName @Model.Customer.LastName</h4>
+    </div>
+
+    <div class="card-body">
+        <ul>
+            <li>@Model.Customer.Salary</li>
+            <li>@Model.Customer.Gender</li>
+        </ul>
+    </div>
+
+    <div class="card-footer">
+        <i>Lorem ipsum</i>
+    </div>
+
+</div>

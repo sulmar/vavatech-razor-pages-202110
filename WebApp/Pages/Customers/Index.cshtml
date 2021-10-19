@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/sklep/klienci"
 @model WebApp.Pages.Customers.IndexModel
 @{
 }
@@ -25,6 +25,9 @@
                 <td>@customer.Gender</td>
                 <td>@customer.Salary</td>
                 <td>@customer.IsRemoved</td>
+                <td>
+                    <a class="btn btn-primary" asp-page="./Details" asp-route-id="@customer.Id">Podgląd</a>
+                </td>
             </tr>
 
         }
