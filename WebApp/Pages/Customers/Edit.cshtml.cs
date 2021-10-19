@@ -27,7 +27,33 @@ namespace WebApp.Pages.Customers
 
         public void OnPost(Customer customer)
         {
-
+            customerRepository.Update(customer);
         }
+
+        /*
+        public IActionResult OnPost(Customer customer)
+        {
+            customerRepository.Update(customer);
+
+            // Typ anonimowy
+            var customerInfo = new { Imie = customer.FirstName, Nazwisko = customer.LastName };            
+
+
+            // Przekierowanie do listy
+           // return RedirectToPage("Index");
+
+            // Przekierowanie do szczegó³ów z przekazaniem parametru
+            // Zastosowanie typu anonimowego
+            return RedirectToPage("Details", new { Id = customer.Id } );
+        }
+        */
     }
+
+    //public class CustomerInfo
+    //{
+    //    public string Imie { get; set; }
+    //    public string Nazwisko { get; set; }
+    //}
+
+   
 }

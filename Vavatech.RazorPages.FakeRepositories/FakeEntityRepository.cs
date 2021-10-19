@@ -18,7 +18,7 @@ namespace Vavatech.RazorPages.FakeRepositories
             entities = faker.Generate(100);
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             int id = entities.Max(c => c.Id);
 
@@ -27,23 +27,23 @@ namespace Vavatech.RazorPages.FakeRepositories
             entities.Add(entity);
         }
 
-        public IEnumerable<TEntity> Get()
+        public virtual IEnumerable<TEntity> Get()
         {
             return entities;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return entities.SingleOrDefault(e => e.Id == id);
         }
 
-        public void Remove(int id)
+        public virtual void Remove(int id)
         {
             TEntity entity = Get(id);
             entities.Remove(entity);
         }
 
-        public void Update(TEntity entity)
+        public virtual void Update(TEntity entity)
         {
             throw new NotImplementedException();
         }
