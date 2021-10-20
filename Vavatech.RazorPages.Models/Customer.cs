@@ -1,5 +1,6 @@
 ﻿namespace Vavatech.RazorPages.Models
 {
+
     public class Customer : BaseEntity
     {
         public string FirstName { get; set; }
@@ -9,7 +10,7 @@
         public bool IsRemoved { get; set; }
         public Address InvoiceAddress { get; set; }
         public Address ShippedAddress { get; set; }
-
+        public CustomerGroup CustomerGroup { get; set; }
     }
 
     public class Address : Base
