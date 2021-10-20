@@ -11,6 +11,7 @@
             <th>Kolor</th>
             <th>Rozmiar</th>
             <td>Cena</td>
+            <td>Tagi</td>
         </tr>
     </thead>
 
@@ -22,9 +23,18 @@
                 <td>@product.Name</td>
                 <td>@product.Color</td>
                 <td>@product.Size</td>
-                <td>@product.UnitPrice</td>                
+                <td>@product.UnitPrice</td>
                 <td>
-                    <div>                        
+                    <ul class="horizontal">
+                        @foreach (var tag in product.Tags)
+                        {
+                            <li>@tag.Name</li>
+                        }
+                    </ul>
+
+                </td>
+                <td>
+                    <div>
                         <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@product.Id">Edycja</a>
                     </div>
                 </td>

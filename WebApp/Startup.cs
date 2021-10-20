@@ -37,6 +37,7 @@ namespace WebApp
 
             services.AddSingleton<IProductRepository, FakeProductRepository>();
             services.AddSingleton<Faker<Product>, ProductFaker>();
+            services.AddSingleton<ITagRepository, FakeTagRepository>();
 
             services.AddRazorPages();
         }

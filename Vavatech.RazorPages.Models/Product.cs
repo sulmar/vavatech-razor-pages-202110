@@ -12,6 +12,15 @@ namespace Vavatech.RazorPages.Models
         public string Size { get; set; }
         public float Weight { get; set; }
         public decimal UnitPrice { get; set; }
+        public ProductCategory ProductCategory { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
+
+        public Product()
+        {
+            Tags = new List<Tag>();
+        }
 
     }
+
+
 }

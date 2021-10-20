@@ -23,7 +23,7 @@
             <tr>
                 <td>@customer.FirstName</td>
                 <td>@customer.LastName</td>
-                <td>@customer.Gender</td>
+                <td>@Html.DisplayFor(c => customer.Gender)</td>
                 <td>@customer.Salary</td>
                 <td>
                     @if (customer.CustomerGroup != null)

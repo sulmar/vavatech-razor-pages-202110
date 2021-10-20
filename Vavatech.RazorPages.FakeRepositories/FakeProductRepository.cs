@@ -32,6 +32,7 @@ namespace Vavatech.RazorPages.FakeRepositories
             product.UnitPrice = entity.UnitPrice;
             product.Weight = entity.Weight;
             product.BarCode = entity.BarCode;
+            product.Tags = entity.Tags;
         }
     }
 

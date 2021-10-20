@@ -1,4 +1,6 @@
-﻿namespace Vavatech.RazorPages.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Vavatech.RazorPages.Models
 {
 
     public class Customer : BaseEntity
@@ -22,9 +24,13 @@
 
     }
 
+    // Install-Package System.ComponentModel.DataAnnotations
     public enum Gender
     {
+        [Display(Name = "Mężczyzna")]
         Male,
+
+        [Display(Name = "Kobieta")]
         Female
     }
     
