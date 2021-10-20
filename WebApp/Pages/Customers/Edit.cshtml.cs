@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 
@@ -15,17 +16,38 @@ namespace WebApp.Pages.Customers
         public Customer Customer { get; set; }
 
         private readonly ICustomerRepository customerRepository;
+        private readonly ICityRepository cityRepository;
 
-        public EditModel(ICustomerRepository customerRepository)
+        public IEnumerable<string> Cities { get; set; }
+        public IEnumerable<SelectListItem> CityItems { get; set; }
+
+        public EditModel(ICustomerRepository customerRepository, ICityRepository cityRepository)
         {
             this.customerRepository = customerRepository;
+            this.cityRepository = cityRepository;
         }
 
         public void OnGet(int id)
         {
             Customer = customerRepository.Get(id);
+
+            Load();
+
         }
 
+        private void Load()
+        {
+            Cities = cityRepository.Get();
+
+            CityItems = Cities
+                .OrderBy(city => city)
+                .Select(city => new SelectListItem { Value = city, Text = city })
+                .ToList();
+
+            CityItems = (from city in Cities
+                         orderby city
+                         select new SelectListItem { Value = city, Text = city }).ToList();
+        }
 
         // Wersja bez BindProperty
         //public void OnPost(Customer customer)
@@ -39,6 +61,8 @@ namespace WebApp.Pages.Customers
         public void OnPost()
         {
             customerRepository.Update(Customer);
+
+            Load();
         }
 
         /*
