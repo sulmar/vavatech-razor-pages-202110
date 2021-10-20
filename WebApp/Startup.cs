@@ -32,6 +32,8 @@ namespace WebApp
             services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
             services.AddSingleton<Faker<Customer>, CustomerFaker>();
             services.AddSingleton<Faker<Address>, AddressFaker>();
+            services.AddSingleton<ICityRepository, FakeCityRepository>();
+            services.AddSingleton<ICustomerGroupRepository, FakeCustomerGroupRepository>();
 
             services.AddSingleton<IProductRepository, FakeProductRepository>();
             services.AddSingleton<Faker<Product>, ProductFaker>();

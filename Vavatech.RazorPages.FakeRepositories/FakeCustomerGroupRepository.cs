@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
@@ -21,6 +22,7 @@ namespace Vavatech.RazorPages.FakeRepositories
         }
 
         public IEnumerable<CustomerGroup> Get() => customerGroups;
-        
+
+        public CustomerGroup Get(int id) => customerGroups.SingleOrDefault(cg => cg.Id == id);
     }
 }

@@ -17,14 +17,21 @@ namespace WebApp.Pages.Customers
 
         private readonly ICustomerRepository customerRepository;
         private readonly ICityRepository cityRepository;
+        private readonly ICustomerGroupRepository customerGroupRepository;
 
         public IEnumerable<string> Cities { get; set; }
         public IEnumerable<SelectListItem> CityItems { get; set; }
+        public IEnumerable<SelectListItem> CustomerGroupItems { get; set; }
+        public SelectList CustomerGroupList { get; set; }
 
-        public EditModel(ICustomerRepository customerRepository, ICityRepository cityRepository)
+        public EditModel(
+            ICustomerRepository customerRepository, 
+            ICityRepository cityRepository, 
+            ICustomerGroupRepository customerGroupRepository)
         {
             this.customerRepository = customerRepository;
             this.cityRepository = cityRepository;
+            this.customerGroupRepository = customerGroupRepository;
         }
 
         public void OnGet(int id)
@@ -39,14 +46,25 @@ namespace WebApp.Pages.Customers
         {
             Cities = cityRepository.Get();
 
+            // Mapowanie z u¿yciem wyra¿enia Lambda
             CityItems = Cities
                 .OrderBy(city => city)
                 .Select(city => new SelectListItem { Value = city, Text = city })
                 .ToList();
 
-            CityItems = (from city in Cities
-                         orderby city
-                         select new SelectListItem { Value = city, Text = city }).ToList();
+
+            // Mapowanie z u¿yciem Linqa
+            //CityItems = (from city in Cities
+            //             orderby city
+            //             select new SelectListItem { Value = city, Text = city }).ToList();
+
+            var customerGroups = customerGroupRepository.Get();
+
+            CustomerGroupItems = customerGroups
+                .Select(cg => new SelectListItem { Value = cg.Id.ToString(), Text = cg.Name })
+                .ToList();
+
+            CustomerGroupList = new SelectList(customerGroups, nameof(CustomerGroup.Id), nameof(CustomerGroup.Name));
         }
 
         // Wersja bez BindProperty

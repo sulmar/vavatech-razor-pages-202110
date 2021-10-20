@@ -10,10 +10,12 @@ namespace Vavatech.RazorPages.FakeRepositories
 
     public class FakeCustomerRepository : FakeEntityRepository<Customer>, ICustomerRepository
     {
-        public FakeCustomerRepository(Faker<Customer> faker)
+        private readonly ICustomerGroupRepository customerGroupRepository;
+
+        public FakeCustomerRepository(Faker<Customer> faker, ICustomerGroupRepository customerGroupRepository)
             : base(faker)
         {
-            
+            this.customerGroupRepository = customerGroupRepository;
         }
 
         public override void Update(Customer entity)
@@ -26,7 +28,11 @@ namespace Vavatech.RazorPages.FakeRepositories
             customer.IsRemoved = entity.IsRemoved;
             customer.Gender = entity.Gender;
             customer.CreatedDate = entity.CreatedDate;
-            customer.ModifiedDate = DateTime.UtcNow;            
+            customer.ModifiedDate = DateTime.UtcNow;
+            customer.InvoiceAddress = entity.InvoiceAddress;
+            customer.ShippedAddress = entity.ShippedAddress;
+            customer.CustomerGroup =  customerGroupRepository.Get(entity.CustomerGroup.Id);
+
         }
     }
 

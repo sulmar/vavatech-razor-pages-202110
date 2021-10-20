@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{E3B15486-F661-4787-BC3C-AB77E4E75B35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{E3B15486-F661-4787-BC3C-AB77E4E75B35}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.Models", "Vavatech.RazorPages.Models\Vavatech.RazorPages.Models.csproj", "{A05E2FD1-2BAD-4B72-A618-D85DD4D56DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.Models", "Vavatech.RazorPages.Models\Vavatech.RazorPages.Models.csproj", "{A05E2FD1-2BAD-4B72-A618-D85DD4D56DDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.IRepositories", "Vavatech.RazorPages.IRepositories\Vavatech.RazorPages.IRepositories.csproj", "{3DF5EA7E-CBF1-4EE4-B73D-263458A220D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.IRepositories", "Vavatech.RazorPages.IRepositories\Vavatech.RazorPages.IRepositories.csproj", "{3DF5EA7E-CBF1-4EE4-B73D-263458A220D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.InMemoryRepositories", "Vavatech.RazorPages.InMemoryRepositories\Vavatech.RazorPages.InMemoryRepositories.csproj", "{56D94E36-21BD-4A63-AD30-BFDB6DA23303}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.InMemoryRepositories", "Vavatech.RazorPages.InMemoryRepositories\Vavatech.RazorPages.InMemoryRepositories.csproj", "{56D94E36-21BD-4A63-AD30-BFDB6DA23303}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.FakeRepositories", "Vavatech.RazorPages.FakeRepositories\Vavatech.RazorPages.FakeRepositories.csproj", "{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.FakeRepositories", "Vavatech.RazorPages.FakeRepositories\Vavatech.RazorPages.FakeRepositories.csproj", "{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMVC", "WebMVC\WebMVC.csproj", "{A2CEA899-BB15-4CF6-A209-2589E50A8046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2CEA899-BB15-4CF6-A209-2589E50A8046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2CEA899-BB15-4CF6-A209-2589E50A8046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2CEA899-BB15-4CF6-A209-2589E50A8046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2CEA899-BB15-4CF6-A209-2589E50A8046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

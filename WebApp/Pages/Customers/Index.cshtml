@@ -11,6 +11,7 @@
             <th>Nazwisko</th>
             <th>Płeć</th>
             <td>Wynagrodzenie</td>
+            <td>Grupa klientów</td>
             <td>Usunięty</td>
         </tr>
     </thead>
@@ -24,6 +25,12 @@
                 <td>@customer.LastName</td>
                 <td>@customer.Gender</td>
                 <td>@customer.Salary</td>
+                <td>
+                    @if (customer.CustomerGroup != null)
+                    {
+                        @customer.CustomerGroup.Name
+                    }                    
+                </td>
                 <td>@customer.IsRemoved</td>
                 <td>
                     <div>

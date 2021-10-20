@@ -8,5 +8,6 @@ namespace Vavatech.RazorPages.IRepositories
     public interface ICustomerGroupRepository
     {
         IEnumerable<CustomerGroup> Get();
+        CustomerGroup Get(int id);
     }
 }
