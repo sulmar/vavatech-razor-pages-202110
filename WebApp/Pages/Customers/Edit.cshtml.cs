@@ -11,6 +11,7 @@ namespace WebApp.Pages.Customers
 {
     public class EditModel : PageModel
     {
+        [BindProperty]
         public Customer Customer { get; set; }
 
         private readonly ICustomerRepository customerRepository;
@@ -25,9 +26,19 @@ namespace WebApp.Pages.Customers
             Customer = customerRepository.Get(id);
         }
 
-        public void OnPost(Customer customer)
+
+        // Wersja bez BindProperty
+        //public void OnPost(Customer customer)
+        //{
+        //    Customer = customer;
+
+        //    customerRepository.Update(customer);            
+        //}
+
+        // Wersja z BindProperty
+        public void OnPost()
         {
-            customerRepository.Update(customer);
+            customerRepository.Update(Customer);
         }
 
         /*
