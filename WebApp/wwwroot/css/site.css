@@ -82,3 +82,4 @@ ul.horizontal li {
 ul.horizontal li:not(:last-child):after {
     content: ", "
 }
+

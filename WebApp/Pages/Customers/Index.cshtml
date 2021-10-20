@@ -34,8 +34,12 @@
                 <td>@customer.IsRemoved</td>
                 <td>
                     <div>
-                        <a class="btn btn-primary" asp-page="./Details" asp-route-id="@customer.Id">Podgląd</a>
-                        <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@customer.Id">Edycja</a>
+                        <a class="btn btn-primary rounded-circle" asp-page="./Details" asp-route-id="@customer.Id">
+                            <i class="fas fa-eye"></i>
+                        </a>
+                        <a class="btn btn-primary rounded-circle" asp-page="./Edit" asp-route-id="@customer.Id">
+                            <i class="fas fa-edit"></i>
+                        </a>
                     </div>
                 </td>
             </tr>
