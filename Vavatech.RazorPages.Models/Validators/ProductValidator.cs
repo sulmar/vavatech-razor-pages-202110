@@ -13,7 +13,12 @@ namespace Vavatech.RazorPages.Models.Validators
         public ProductValidator()
         {
             RuleFor(p => p.Name).NotEmpty().Length(3, 20);
-            RuleFor(p => p.BarCode).Must(IsValidBarCode).WithMessage("Błędny kod kreskowy");
+            
+            RuleFor(p => p.BarCode)
+                .Must(IsValidBarCode)
+                .When(p=>!string.IsNullOrEmpty(p.BarCode))
+                .WithMessage("Błędny kod kreskowy");
+
             RuleFor(p => p.FromTemperature).LessThanOrEqualTo(p => p.ToTemperature);            
         }
 

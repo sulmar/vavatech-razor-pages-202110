@@ -58,6 +58,7 @@ namespace Vavatech.RazorPages.FakeRepositories
             product.Weight = entity.Weight;
             product.BarCode = entity.BarCode;
             product.Tags = entity.Tags;
+            product.Photo = entity.Photo;
         }
     }
 

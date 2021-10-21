@@ -140,7 +140,7 @@
     </form>
 
 
-    <form method="post" asp-page-handler="Send" >
+    <form method="post" asp-page-handler="Send" asp-route-id="@Model.Customer.Id" >
         <button type="submit" class="btn btn-secondary btn-block">Send</button>
     </form>
 

@@ -77,6 +77,14 @@
             <span asp-validation-for="@Model.SelectedTags" class="text-danger"></span>
         </div>
 
+        @*<div class="form-row">
+            <label asp-for="@Model.Attachment"></label>
+            <input type="file" asp-for="@Model.Attachment" />
+            <span asp-validation-for="@Model.Attachment" class="text-danger"></span>
+        </div>*@
+
+        @*<button type="submit" class="btn btn-dark btn-block" asp-page-handler="AddAttachment">Upload</button>*@
+
         <button type="submit" class="btn btn-success btn-block">Zapisz</button>
 
     </div>
@@ -87,4 +95,21 @@
 
     }
 
+</form>
+
+<form method="post" enctype="multipart/form-data" asp-page-handler="AddAttachment" asp-route-id="@Model.Product.Id">
+
+    <input type="hidden" asp-for="@Model.Product.Id" />
+    <input type="hidden" asp-for="@Model.Product.Name" />
+
+    <label asp-for="@Model.Attachment"></label>
+    <input type="file" asp-for="@Model.Attachment" />
+    <span asp-validation-for="@Model.Attachment" class="text-danger"></span>
+
+
+    <label asp-for="@Model.Attachments">Załączniki</label>
+    <input type="file" asp-for="@Model.Attachments" multiple />
+    <span asp-validation-for="@Model.Attachments" class="text-danger"></span>
+
+    <button formnovalidate="formnovalidate" class="btn btn-dark btn-block">Upload!</button>
 </form>

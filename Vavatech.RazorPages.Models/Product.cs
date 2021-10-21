@@ -18,6 +18,9 @@ namespace Vavatech.RazorPages.Models
         public float FromTemperature { get; set; }
         public float ToTemperature { get; set; }
 
+        public byte[] Photo { get; set; }
+
+
         public Product()
         {
             Tags = new List<Tag>();
