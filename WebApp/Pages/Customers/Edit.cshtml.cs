@@ -22,8 +22,19 @@ namespace WebApp.Pages.Customers
             PageHandler = "CheckEmail",
             AdditionalFields = "__RequestVerificationToken, Customer.Id"
             )]
+
+       
         [BindProperty]
         public string Email { get; set; }
+
+        [RestApiRemote(
+          ErrorMessage = "Podana strona nie istnieje",
+          HttpMethod = "post",
+          AdditionalFields = "__RequestVerificationToken",
+          Url = "http://www.domain.com")]
+        [BindProperty]
+        
+        public string Website { get; set; }
 
         private readonly ICustomerRepository customerRepository;
         private readonly ICityRepository cityRepository;
