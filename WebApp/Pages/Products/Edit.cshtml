@@ -74,6 +74,7 @@
         <div class="form-row">
             <label asp-for="@Model.SelectedTags">Tagi</label>
             <select asp-for="@Model.SelectedTags" asp-items="@Model.TagList" class="form-control"></select>
+            <span asp-validation-for="@Model.SelectedTags" class="text-danger"></span>
         </div>
 
         <button type="submit" class="btn btn-success btn-block">Zapisz</button>

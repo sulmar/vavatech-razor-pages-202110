@@ -33,6 +33,11 @@ namespace WebApp.Pages.Products
         {
             Product = productRepository.Get(id);
 
+            Load();
+        }
+
+        private void Load()
+        {
             TagList = new SelectList(tagRepository.Get(), nameof(Tag.Id), nameof(Tag.Name));
 
             SelectedTags = Product.Tags.Select(tag => tag.Id);
@@ -40,12 +45,18 @@ namespace WebApp.Pages.Products
 
         public IActionResult OnPost()
         {
-            if (!ModelState.IsValid)
+            Product.Tags = SelectedTags.Select(id => tagRepository.Get(id));
+
+            if (Product.Tags.Count() < 3)
             {
-                return Page();
+                ModelState.AddModelError(nameof(SelectedTags), "Wybierz przynajmniej 3 tagi");
             }
 
-            Product.Tags = SelectedTags.Select(id => tagRepository.Get(id));
+            if (!ModelState.IsValid)
+            {
+                Load();
+                return Page();
+            }
 
             productRepository.Update(Product);
 
