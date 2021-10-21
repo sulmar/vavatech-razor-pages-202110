@@ -13,6 +13,8 @@ namespace WebApp.Pages.Customers
    // [IgnoreAntiforgeryToken]
     public class EditModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public int Id { get; set; }
 
         [BindProperty]
         public Customer Customer { get; set; }
@@ -55,16 +57,15 @@ namespace WebApp.Pages.Customers
             this.customerGroupRepository = customerGroupRepository;
         }
 
-        public void OnGet(int id)
+        public void OnGet()
         {
-            Customer = customerRepository.Get(id);
-
             Load();
-
         }
 
         private void Load()
         {
+            Customer = customerRepository.Get(Id);
+
             Cities = cityRepository.Get();
 
             // Mapowanie z u¿yciem wyra¿enia Lambda
