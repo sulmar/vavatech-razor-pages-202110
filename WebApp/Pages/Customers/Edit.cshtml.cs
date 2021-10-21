@@ -76,11 +76,38 @@ namespace WebApp.Pages.Customers
         //}
 
         // Wersja z BindProperty
-        public void OnPost()
+        //public IActionResult OnPost()
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        customerRepository.Update(Customer);
+
+        //        return RedirectToPage("Index");
+        //    }
+
+        //    else
+        //    {
+        //        Load();
+
+        //        return Page();
+        //    }
+        //}
+
+        public IActionResult OnPost()
         {
+            if (!ModelState.IsValid)
+            {
+                Load();
+
+                return Page();
+            }
+
+
             customerRepository.Update(Customer);
 
-            Load();
+            return RedirectToPage("Index");
+
+      
         }
 
         /*
