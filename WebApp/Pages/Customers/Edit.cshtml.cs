@@ -31,10 +31,9 @@ namespace WebApp.Pages.Customers
         [RestApiRemote(
           ErrorMessage = "Podana strona nie istnieje",
           HttpMethod = "post",
-          AdditionalFields = "__RequestVerificationToken",
-          Url = "http://www.domain.com")]
+          AdditionalFields = "__RequestVerificationToken"
+            )]
         [BindProperty]
-        
         public string Website { get; set; }
 
         private readonly ICustomerRepository customerRepository;
@@ -127,9 +126,21 @@ namespace WebApp.Pages.Customers
             Customer.Email = Email;
             customerRepository.Update(Customer);
 
-            return RedirectToPage("Index");
+            return RedirectToPage("Index");      
+        }
 
-      
+        // {OnPost}{Handler}
+        public void OnPostSend([FromServices] IMessageService messageService)
+        {
+            messageService.Send("Hello World!");
+            Load();
+        }
+        
+
+        public void OnGetSend([FromServices] IMessageService messageService)
+        {
+            messageService.Send("Hello World!");
+            Load();
         }
 
         // Zdalna walidacja (Remote Validation)

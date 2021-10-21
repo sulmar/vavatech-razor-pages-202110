@@ -45,6 +45,8 @@ namespace WebApp
 
             services.AddTransient<IValidator<Product>, ProductValidator>();
 
+            services.AddTransient<IMessageService, FakeMessageService>();
+
             // Install-Package FluentValidation.AspNetCore
             services.AddRazorPages()
                 .AddFluentValidation();

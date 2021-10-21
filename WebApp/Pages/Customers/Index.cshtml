@@ -102,6 +102,10 @@
                             <a class="btn btn-primary rounded-circle" asp-page="./Edit" asp-route-id="@customer.Id">
                                 <i class="fas fa-edit"></i>
                             </a>
+
+                            <a class="btn btn-secondary rounded-circle" asp-page="./Edit" asp-page-handler="Send" asp-route-id="@customer.Id">
+                                <i class="fas fa-send"></i>
+                            </a>
                         </div>
                     </td>
                 </tr>

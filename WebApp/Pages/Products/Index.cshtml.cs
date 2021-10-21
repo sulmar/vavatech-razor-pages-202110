@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
+using Vavatech.RazorPages.Models.SearchCriterias;
 
 namespace WebApp.Pages.Products
 {
@@ -14,6 +15,9 @@ namespace WebApp.Pages.Products
         private readonly IProductRepository productRepository;
 
         public IEnumerable<Product> Products { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public ProductSearchCriteria SearchCriteria { get; set; }
 
 
         public IndexModel(IProductRepository productRepository)
@@ -24,7 +28,15 @@ namespace WebApp.Pages.Products
 
         public void OnGet()
         {
-            Products = productRepository.Get();
+            Products = productRepository.Get(SearchCriteria);
         }
+
+        public void OnPost()
+        {
+            
+        }
+
+
+        // POST-REDIRECT-GET
     }
 }
