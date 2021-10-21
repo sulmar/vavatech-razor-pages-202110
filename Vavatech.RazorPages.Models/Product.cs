@@ -15,12 +15,18 @@ namespace Vavatech.RazorPages.Models
         public ProductCategory ProductCategory { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
 
+        public float FromTemperature { get; set; }
+        public float ToTemperature { get; set; }
+
         public Product()
         {
             Tags = new List<Tag>();
         }
-
     }
+
+    
+
+   
 
 
 }

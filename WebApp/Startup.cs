@@ -1,4 +1,6 @@
 using Bogus;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +16,7 @@ using Vavatech.RazorPages.FakeRepositories;
 using Vavatech.RazorPages.InMemoryRepositories;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
+using Vavatech.RazorPages.Models.Validators;
 using WebApp.Pages.Customers;
 
 namespace WebApp
@@ -40,7 +43,11 @@ namespace WebApp
             services.AddSingleton<Faker<Product>, ProductFaker>();
             services.AddSingleton<ITagRepository, FakeTagRepository>();
 
-            services.AddRazorPages();
+            services.AddTransient<IValidator<Product>, ProductValidator>();
+
+            // Install-Package FluentValidation.AspNetCore
+            services.AddRazorPages()
+                .AddFluentValidation();
 
             //services.AddRazorPages(options =>
             //{

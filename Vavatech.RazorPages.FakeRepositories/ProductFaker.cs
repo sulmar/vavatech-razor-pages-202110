@@ -20,7 +20,10 @@ namespace Vavatech.RazorPages.FakeRepositories
             RuleFor(p => p.Color, f => f.Commerce.Color());
             RuleFor(p => p.Weight, f => f.Random.Float(100, 1000));
             RuleFor(p => p.UnitPrice, f => Math.Round( f.Random.Decimal(100, 1000), 2));
-            
+
+            RuleFor(p => p.FromTemperature, f => f.Random.Float(0, 100));
+            RuleFor(p => p.ToTemperature, (f, p) => p.FromTemperature + f.Random.Float(1, 20));
+
         }
     }
 }
