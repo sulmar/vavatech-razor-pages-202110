@@ -10,10 +10,20 @@ using Vavatech.RazorPages.Models;
 
 namespace WebApp.Pages.Customers
 {
+   // [IgnoreAntiforgeryToken]
     public class EditModel : PageModel
     {
         [BindProperty]
         public Customer Customer { get; set; }
+
+        [PageRemote(
+            ErrorMessage = "Podany adres email ju¿ istnieje",
+            HttpMethod = "post",
+            PageHandler = "CheckEmail",
+            AdditionalFields = "__RequestVerificationToken, Customer.Id"
+            )]
+        [BindProperty]
+        public string Email { get; set; }
 
         private readonly ICustomerRepository customerRepository;
         private readonly ICityRepository cityRepository;
@@ -102,12 +112,21 @@ namespace WebApp.Pages.Customers
                 return Page();
             }
 
-
+            Customer.Email = Email;
             customerRepository.Update(Customer);
 
             return RedirectToPage("Index");
 
       
+        }
+
+        // Zdalna walidacja (Remote Validation)
+        public JsonResult OnPostCheckEmail()
+        {
+            var isValid = !customerRepository.IsExists(Customer, Email);
+
+            return new JsonResult(isValid);
+
         }
 
         /*

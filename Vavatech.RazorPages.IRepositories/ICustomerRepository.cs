@@ -6,7 +6,7 @@ namespace Vavatech.RazorPages.IRepositories
 {
     public interface ICustomerRepository : IEntityRepository<Customer>
     {
-       
+        bool IsExists(Customer customer, string email);
     }
 
 }

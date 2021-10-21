@@ -37,6 +37,11 @@ namespace Vavatech.RazorPages.InMemoryRepositories
             throw new NotImplementedException();
         }
 
+        public bool IsExists(Customer customer, string email)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Remove(int id)
         {
             throw new NotImplementedException();

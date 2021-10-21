@@ -18,6 +18,14 @@ namespace Vavatech.RazorPages.FakeRepositories
             this.customerGroupRepository = customerGroupRepository;
         }
 
+        public bool IsExists(Customer customer, string email)
+        {
+            return entities
+                .Where(c => c.Id != customer.Id)
+                .Select(c => c.Email)
+                .Contains(email);
+        }
+
         public override void Update(Customer entity)
         {
             Customer customer = Get(entity.Id);
@@ -31,7 +39,8 @@ namespace Vavatech.RazorPages.FakeRepositories
             customer.ModifiedDate = DateTime.UtcNow;
             customer.InvoiceAddress = entity.InvoiceAddress;
             customer.ShippedAddress = entity.ShippedAddress;
-            customer.CustomerGroup =  customerGroupRepository.Get(entity.CustomerGroup.Id);
+            customer.CustomerGroup = customerGroupRepository.Get(entity.CustomerGroup.Id);
+            customer.Email = entity.Email;
 
         }
     }

@@ -11,7 +11,7 @@ namespace Vavatech.RazorPages.FakeRepositories
     public class FakeEntityRepository<TEntity> : IEntityRepository<TEntity>
         where TEntity : BaseEntity
     {
-        private readonly ICollection<TEntity> entities;
+        protected readonly ICollection<TEntity> entities;
 
         public FakeEntityRepository(Faker<TEntity> faker)
         {
