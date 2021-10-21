@@ -17,7 +17,7 @@ namespace WebApp.Pages.Customers
         public Customer Customer { get; set; }
 
         [PageRemote(
-            ErrorMessage = "Podany adres email ju¿ istnieje",
+            ErrorMessage = "Podany adres email ju¿ istnieje",            
             HttpMethod = "post",
             PageHandler = "CheckEmail",
             AdditionalFields = "__RequestVerificationToken, Customer.Id"
