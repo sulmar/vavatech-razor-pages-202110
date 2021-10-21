@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
+using Vavatech.RazorPages.Models.SearchCriterias;
 
 namespace Vavatech.RazorPages.InMemoryRepositories
 {
@@ -33,6 +34,11 @@ namespace Vavatech.RazorPages.InMemoryRepositories
         }
 
         public Customer Get(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria)
         {
             throw new NotImplementedException();
         }

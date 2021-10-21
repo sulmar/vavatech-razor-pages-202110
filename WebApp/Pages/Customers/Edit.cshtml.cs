@@ -13,6 +13,7 @@ namespace WebApp.Pages.Customers
    // [IgnoreAntiforgeryToken]
     public class EditModel : PageModel
     {
+
         [BindProperty]
         public Customer Customer { get; set; }
 

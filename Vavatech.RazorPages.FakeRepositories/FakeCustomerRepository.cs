@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 using System.Linq;
+using Vavatech.RazorPages.Models.SearchCriterias;
 
 namespace Vavatech.RazorPages.FakeRepositories
 {
@@ -16,6 +17,44 @@ namespace Vavatech.RazorPages.FakeRepositories
             : base(faker)
         {
             this.customerGroupRepository = customerGroupRepository;
+        }
+
+        public IEnumerable<Customer> Get(CustomerSearchCriteria searchCriteria)
+        {
+            IQueryable<Customer> customers = entities.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchCriteria.FirstName))
+            {
+                customers = customers.Where(c => c.FirstName == searchCriteria.FirstName);
+            }
+
+            if (!string.IsNullOrEmpty(searchCriteria.LastName))
+            {
+                customers = customers.Where(c => c.LastName == searchCriteria.LastName);
+            }
+
+            if (searchCriteria.SalaryFrom.HasValue)
+            {
+                customers = customers.Where(c => c.Salary >= searchCriteria.SalaryFrom);
+            }
+
+            if (searchCriteria.SalaryTo.HasValue)
+            {
+                customers = customers.Where(c => c.Salary <= searchCriteria.SalaryTo);
+            }
+
+            if (searchCriteria.Gender.HasValue)
+            {
+                customers = customers.Where(c => c.Gender == searchCriteria.Gender);
+            }
+
+            if (searchCriteria.CustomerGroup!=null)
+            {
+                customers = customers.Where(c => c.CustomerGroup.Id == searchCriteria.CustomerGroup.Id);
+            }
+
+            return customers.ToList();
+
         }
 
         public bool IsExists(Customer customer, string email)

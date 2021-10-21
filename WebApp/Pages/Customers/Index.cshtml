@@ -4,48 +4,113 @@
 }
 
 
-<table class="table table-hover table-striped table-dark">
-    <thead>
-        <tr>
-            <th>Imię</th>
-            <th>Nazwisko</th>
-            <th>Płeć</th>
-            <td>Wynagrodzenie</td>
-            <td>Grupa klientów</td>
-            <td>Usunięty</td>
-        </tr>
-    </thead>
+<form method="post">
 
-    <tbody>
+    <div>
+        <div class="form-row">
 
-        @foreach (var customer in Model.Customers)
-        {
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.FirstName">Imię</label>
+                <input type="text" asp-for="@Model.SearchCriteria.FirstName" class="form-control" />
+                <span asp-validation-for="@Model.SearchCriteria.FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.LastName">Nazwisko</label>
+                <input type="text" asp-for="@Model.SearchCriteria.LastName" class="form-control" />
+                <span asp-validation-for="@Model.SearchCriteria.LastName" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.SalaryFrom">Od kwoty</label>
+                <input type="text" asp-for="@Model.SearchCriteria.SalaryFrom" class="form-control" />
+                <span asp-validation-for="@Model.SearchCriteria.SalaryFrom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.SalaryTo">Do kwoty</label>
+                <input type="text" asp-for="@Model.SearchCriteria.SalaryTo" class="form-control" />
+                <span asp-validation-for="@Model.SearchCriteria.SalaryTo" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.CustomerGroup.Id">Grupa</label>
+                <select asp-for="@Model.SearchCriteria.CustomerGroup.Id" asp-items="@Model.CustomerGroupList" class="form-control">
+                    <option value="">Wybierz grupę</option>
+                </select>
+                <span asp-validation-for="@Model.SearchCriteria.SalaryFrom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-12">
+                <label asp-for="@Model.SearchCriteria.SalaryTo">Do kwoty</label>
+                <input type="text" asp-for="@Model.SearchCriteria.SalaryTo" class="form-control" />
+                <span asp-validation-for="@Model.SearchCriteria.SalaryTo" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block">Szukaj</button>
+    </div>
+
+</form>
+
+
+@if (Model.Customers != null)
+{
+
+    <table class="table table-hover table-striped table-dark">
+        <thead>
             <tr>
-                <td>@customer.FirstName</td>
-                <td>@customer.LastName</td>
-                <td>@Html.DisplayFor(c => customer.Gender)</td>
-                <td>@customer.Salary</td>
-                <td>
-                    @if (customer.CustomerGroup != null)
-                    {
-                        @customer.CustomerGroup.Name
-                    }                    
-                </td>
-                <td>@customer.IsRemoved</td>
-                <td>
-                    <div>
-                        <a class="btn btn-primary rounded-circle" asp-page="./Details" asp-route-id="@customer.Id">
-                            <i class="fas fa-eye"></i>
-                        </a>
-                        <a class="btn btn-primary rounded-circle" asp-page="./Edit" asp-route-id="@customer.Id">
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </div>
-                </td>
+                <th>Imię</th>
+                <th>Nazwisko</th>
+                <th>Płeć</th>
+                <td>Wynagrodzenie</td>
+                <td>Grupa klientów</td>
+                <td>Usunięty</td>
             </tr>
+        </thead>
 
-        }
+        <tbody>
+
+            @foreach (var customer in Model.Customers)
+            {
+                <tr>
+                    <td>@customer.FirstName</td>
+                    <td>@customer.LastName</td>
+                    <td>@Html.DisplayFor(c => customer.Gender)</td>
+                    <td>@customer.Salary</td>
+                    <td>
+                        @if (customer.CustomerGroup != null)
+                        {
+                            @customer.CustomerGroup.Name
+                        }
+                    </td>
+                    <td>@customer.IsRemoved</td>
+                    <td>
+                        <div>
+                            <a class="btn btn-primary rounded-circle" asp-page="./Details" asp-route-id="@customer.Id">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                            <a class="btn btn-primary rounded-circle" asp-page="./Edit" asp-route-id="@customer.Id">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+
+}
+
