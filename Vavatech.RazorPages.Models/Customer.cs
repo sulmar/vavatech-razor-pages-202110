@@ -22,7 +22,19 @@ namespace Vavatech.RazorPages.Models
 
         public string Password { get; set; }
         [Compare(nameof(Password))]
-        public string ConfirmPassword { get; set; }     
+        public string ConfirmPassword { get; set; }
+
+        public Customer()
+        {
+            Gender = Models.Gender.Male;
+            IsRemoved = false;
+            Salary = 1000;
+        }
+
+        public static Customer Create()
+        {
+            return new Customer();
+        }
     }
 
     public class Address : Base

@@ -1,7 +1,8 @@
 ﻿@page
-@model WebApp.Pages.Customers.EditModel
+@model WebApp.Pages.Customers.CreateModel
 @{
 }
+
 
 <div>
 
@@ -139,7 +140,7 @@
     </form>
 
 
-    <form method="post" asp-page-handler="Send" asp-route-id="@Model.Customer.Id" >
+    <form method="post" asp-page-handler="Send" asp-route-id="@Model.Customer.Id">
         <button type="submit" class="btn btn-secondary btn-block">Send</button>
     </form>
 
