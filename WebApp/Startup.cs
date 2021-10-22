@@ -99,6 +99,8 @@ namespace WebApp
             //});
 
 
+            
+
             // Install-Package Microsoft.EntityFrameworkCore.SqlServer
 
             string connectionString = Configuration.GetConnectionString("ShopConnectionString");
@@ -107,7 +109,7 @@ namespace WebApp
 
             services.AddSignalR();
 
-            
+            services.AddPageMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,6 +133,8 @@ namespace WebApp
             // app.UseMiddleware<LoggerMiddleware>();
 
             app.UseLogger();
+
+            app.UsePageMemoryCache();
 
             //app.Use(async (context, next) =>
             //{
@@ -157,7 +161,7 @@ namespace WebApp
 
             //    context.Response.StatusCode = (int) StatusCodes.Status400BadRequest;
 
-              
+
 
             //  //  string bodyContent = new StreamReader(context.Response.Body).ReadToEnd();
 
