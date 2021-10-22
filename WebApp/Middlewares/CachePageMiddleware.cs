@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebApp.Middlewares
 {
+    
     public static class PageMemoryCacheMiddlewareMiddlewareExtensions
     {
         public static IServiceCollection AddPageMemoryCache(this IServiceCollection services)
@@ -29,6 +30,9 @@ namespace WebApp.Middlewares
         }
     }
 
+    /// <summary>
+    /// Middleware do cache'owania całych stron
+    /// </summary>
     public class PageMemoryCacheMiddleware
     {
         private readonly RequestDelegate next;
@@ -43,24 +47,20 @@ namespace WebApp.Middlewares
             this.logger = logger;
         }
 
-
-
         public async Task InvokeAsync(HttpContext context)
         {
             if (HttpMethods.IsGet(context.Request.Method))
             {
-                string key = $"{context.Request.Path}";
+                string key = context.Request.Path;
 
                 if (context.Request.QueryString.HasValue)
                 {
                     key += context.Request.QueryString.ToString();
                 }
 
-                
-
                 if (memoryCache.TryGetValue(key, out string body))
                 {
-                    logger.LogInformation($"Strona {context.Request.Path} pobrana z cache");
+                    logger.LogInformation($"Page {context.Request.Path} from cache");
 
                     await context.Response.WriteAsync(body);
                 }
@@ -111,7 +111,7 @@ namespace WebApp.Middlewares
             //We need to reset the reader for the response so that the client can read it.
             response.Body.Seek(0, SeekOrigin.Begin);
 
-            //Return the string for the response, including the status code (e.g. 200, 404, 401, etc.)
+            //Return the string for the response
             return text;
         }
     }
