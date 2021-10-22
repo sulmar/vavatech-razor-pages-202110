@@ -1,3 +1,5 @@
+using AspNetCoreHero.ToastNotification;
+using AspNetCoreHero.ToastNotification.Extensions;
 using Bogus;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -55,12 +57,23 @@ namespace WebApp
             //{
             //    options.Conventions.ConfigureFilter(new IgnoreAntiforgeryTokenAttribute());
             //});
+
+
+            // Install-Package AspNetCoreHero.ToastNotification
+            services.AddNotyf(options =>
+            {
+                options.DurationInSeconds = 5;
+                options.IsDismissable = true;
+                options.Position = NotyfPosition.BottomRight;
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
+
+            app.UseNotyf();
 
             app.UseRouting();
 

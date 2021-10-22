@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -41,6 +42,7 @@ namespace WebApp.Pages.Customers
         private readonly ICustomerRepository customerRepository;
         private readonly ICityRepository cityRepository;
         private readonly ICustomerGroupRepository customerGroupRepository;
+        private readonly INotyfService notyfService;
 
         public IEnumerable<string> Cities { get; set; }
         public IEnumerable<SelectListItem> CityItems { get; set; }
@@ -50,11 +52,13 @@ namespace WebApp.Pages.Customers
         public EditModel(
             ICustomerRepository customerRepository, 
             ICityRepository cityRepository, 
-            ICustomerGroupRepository customerGroupRepository)
+            ICustomerGroupRepository customerGroupRepository,
+            INotyfService notyfService)
         {
             this.customerRepository = customerRepository;
             this.cityRepository = cityRepository;
             this.customerGroupRepository = customerGroupRepository;
+            this.notyfService = notyfService;
         }
 
         public void OnGet()
@@ -134,6 +138,9 @@ namespace WebApp.Pages.Customers
         public void OnPostSend([FromServices] IMessageService messageService)
         {
             messageService.Send("Hello World!");
+
+            notyfService.Custom("Komunikat zosta³ wys³any.", 5, "whitesmoke", "fa fa-gear");
+
             Load();
         }
         
