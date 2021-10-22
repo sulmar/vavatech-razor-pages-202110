@@ -67,8 +67,15 @@ namespace WebApp
                 options.Position = NotyfPosition.BottomRight;
             });
 
-            services.AddSession(options => options.IdleTimeout = TimeSpan.FromMinutes(30));
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            //    options.Cookie.Name = "MySessionCoockie";
+            });
+            
             services.AddMemoryCache();
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
