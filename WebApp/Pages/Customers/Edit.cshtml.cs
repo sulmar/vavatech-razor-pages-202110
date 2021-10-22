@@ -161,6 +161,9 @@ namespace WebApp.Pages.Customers
             Customer.Email = Email;
             customerRepository.Update(Customer);
 
+            string key = $"customer-{Id}";
+            memoryCache.Remove(key);
+
             return RedirectToPage("Index");      
         }
 

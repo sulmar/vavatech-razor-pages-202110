@@ -5,6 +5,7 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -12,13 +13,16 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Vavatech.RazorPages.FakeRepositories;
 using Vavatech.RazorPages.InMemoryRepositories;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 using Vavatech.RazorPages.Models.Validators;
+using WebApp.Middlewares;
 using WebApp.Pages.Customers;
 
 namespace WebApp
@@ -93,6 +97,42 @@ namespace WebApp
             app.UseRouting();
 
             app.UseSession();
+
+            // app.UseMiddleware<LoggerMiddleware>();
+
+            app.UseLogger();
+
+            //app.Use(async (context, next) =>
+            //{
+            //    // request
+            //    string url = context.Request.Path;                
+
+            //    //if (istnieje_w_cache)
+            //    //{ 
+            //    //    // load body from cache
+
+            //    //    // sent do client
+            //    //    // context.Response.BodyWriter
+            //    //}
+            //    //else
+            //    //{
+
+            //    //}
+
+            //    // await next();
+
+            //    // response
+
+            //    // Save to cache: context.Response.Body
+
+            //    context.Response.StatusCode = (int) StatusCodes.Status400BadRequest;
+
+              
+
+            //  //  string bodyContent = new StreamReader(context.Response.Body).ReadToEnd();
+
+
+            //});
 
             app.UseEndpoints(endpoints =>
             {
