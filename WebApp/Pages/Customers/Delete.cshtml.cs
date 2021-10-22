@@ -8,6 +8,7 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 
@@ -53,15 +54,20 @@ namespace WebApp.Pages.Customers
         public Customer Customer { get; set; }
 
         private readonly ICustomerRepository customerRepository;
+        private readonly ILogger<DeleteModel> logger;
 
-        public DeleteModel(ICustomerRepository customerRepository)
+        public DeleteModel(ICustomerRepository customerRepository, ILogger<DeleteModel> logger)
         {
             this.customerRepository = customerRepository;
+            this.logger = logger;
         }
 
         public void OnGet()
         {
             Customer = customerRepository.Get(Id);
+
+            logger.LogInformation("SessionId {0}", HttpContext.Session.Id);
+
 
             HttpContext.Session.SetString("imie", Customer.FirstName);
             HttpContext.Session.SetString("nazwisko", Customer.LastName);
