@@ -72,6 +72,9 @@ namespace WebApp.Pages.Customers
             HttpContext.Session.SetString("imie", Customer.FirstName);
             HttpContext.Session.SetString("nazwisko", Customer.LastName);
 
+
+          
+
             // serializacja
             //var json = JsonSerializer.Serialize(Customer);
 
@@ -88,7 +91,7 @@ namespace WebApp.Pages.Customers
             customerRepository.Remove(Id);
 
             notyfService.Success($"Klient {Customer.FirstName} {Customer.LastName} zosta³ usuniêty");
-            
+
             string imie = HttpContext.Session.GetString("imie");
             string nazwisko = HttpContext.Session.GetString("nazwisko");
 
@@ -103,6 +106,11 @@ namespace WebApp.Pages.Customers
 
             HttpContext.Session.Remove("imie");
             HttpContext.Session.Remove("nazwisko");
+
+            TempData["imie"] = Customer.FirstName;
+            TempData["nazwisko"] = Customer.LastName;
+
+            
 
             return RedirectToPage("Index");
         }

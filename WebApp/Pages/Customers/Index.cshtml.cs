@@ -22,6 +22,8 @@ namespace WebApp.Pages.Customers
         private readonly ICustomerRepository customerRepository;
         private readonly ICustomerGroupRepository customerGroupRepository;
 
+        [TempData]
+        public string imie { get; set; }
 
         public IndexModel(ICustomerRepository customerRepository, ICustomerGroupRepository customerGroupRepository)
         {
