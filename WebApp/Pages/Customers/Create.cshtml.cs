@@ -6,8 +6,10 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.SignalR;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
+using WebApp.Hubs;
 
 namespace WebApp.Pages.Customers
 {
@@ -31,6 +33,7 @@ namespace WebApp.Pages.Customers
         private readonly ICityRepository cityRepository;
         private readonly ICustomerGroupRepository customerGroupRepository;
         private readonly INotyfService notyfService;
+        private readonly IHubContext<CustomersHub> hubContext;
 
         public IEnumerable<string> Cities { get; set; }
         public IEnumerable<SelectListItem> CityItems { get; set; }
@@ -41,13 +44,15 @@ namespace WebApp.Pages.Customers
            ICustomerRepository customerRepository,
            ICityRepository cityRepository,
            ICustomerGroupRepository customerGroupRepository,
-           INotyfService notyfService
+           INotyfService notyfService,
+           IHubContext<CustomersHub> hubContext
            )
         {
             this.customerRepository = customerRepository;
             this.cityRepository = cityRepository;
             this.customerGroupRepository = customerGroupRepository;
             this.notyfService = notyfService;
+            this.hubContext = hubContext;
         }
 
         public void OnGet()
@@ -76,7 +81,7 @@ namespace WebApp.Pages.Customers
             CustomerGroupList = new SelectList(customerGroups, nameof(CustomerGroup.Id), nameof(CustomerGroup.Name));
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             if (!ModelState.IsValid)
             {
@@ -89,6 +94,8 @@ namespace WebApp.Pages.Customers
 
             Customer.Email = Email;
             customerRepository.Add(Customer);
+
+            await hubContext.Clients.All.SendAsync("AddedCustomer", Customer);
 
             notyfService.Success($"Klient {Customer.FirstName} {Customer.LastName} zosta³ dodany");
 

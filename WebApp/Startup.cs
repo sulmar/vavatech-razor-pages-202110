@@ -24,6 +24,7 @@ using Vavatech.RazorPages.InMemoryRepositories;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 using Vavatech.RazorPages.Models.Validators;
+using WebApp.Hubs;
 using WebApp.Middlewares;
 using WebApp.Pages.Customers;
 
@@ -97,6 +98,9 @@ namespace WebApp
             string connectionString = Configuration.GetConnectionString("ShopConnectionString");
             services.AddDbContext<ShopContext>(options => options.UseSqlServer(connectionString));
 
+
+            services.AddSignalR();
+
             
         }
 
@@ -104,7 +108,6 @@ namespace WebApp
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ShopContext context)
         {
             // context.Database.EnsureCreated();
-
 
             // Install-Package Microsoft.EntityFramework.Tools
 
@@ -158,6 +161,8 @@ namespace WebApp
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+
+                endpoints.MapHub<CustomersHub>("/signalr/customers");
             });
         }
     }

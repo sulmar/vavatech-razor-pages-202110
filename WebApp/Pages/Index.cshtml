@@ -13,3 +13,26 @@
 <form method="post">
     <button type="submit" class="btn btn-dark btn-block">Zapamiętaj mnie</button>
 </form>
+
+
+<div>
+    <ul id="messages"></ul>
+</div>
+
+
+<script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("/signalr/customers")
+        .build();
+
+    connection.start()
+        .catch(() => err => console.error(err.toString));
+
+    connection.on('AddedCustomer', (customer) => {
+        console.log(customer);
+        let li = document.createElement("li");
+        li.innerText = customer.firstName;
+        document.getElementById("messages").appendChild(li);
+    });
+
+</script>
