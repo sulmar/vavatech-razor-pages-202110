@@ -48,7 +48,7 @@ namespace Vavatech.RazorPages.FakeRepositories
                 customers = customers.Where(c => c.Gender == searchCriteria.Gender);
             }
 
-            if (searchCriteria.CustomerGroup!=null)
+            if (searchCriteria.CustomerGroup != null)
             {
                 customers = customers.Where(c => c.CustomerGroup.Id == searchCriteria.CustomerGroup.Id);
             }

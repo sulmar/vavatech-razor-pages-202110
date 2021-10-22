@@ -72,8 +72,13 @@ namespace WebApp
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             //    options.Cookie.Name = "MySessionCoockie";
             });
-            
-            services.AddMemoryCache();
+
+            /// services.AddMemoryCache();
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379";
+                options.InstanceName = "customers";
+            });
 
             
         }

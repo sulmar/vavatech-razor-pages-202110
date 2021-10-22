@@ -6,6 +6,8 @@ using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Caching.Distributed;
+using Microsoft.Extensions.Caching.Memory;
 using Vavatech.RazorPages.IRepositories;
 using Vavatech.RazorPages.Models;
 
@@ -43,6 +45,8 @@ namespace WebApp.Pages.Customers
         private readonly ICityRepository cityRepository;
         private readonly ICustomerGroupRepository customerGroupRepository;
         private readonly INotyfService notyfService;
+        private readonly IMemoryCache memoryCache;
+        private readonly IDistributedCache distributedCache;
 
         public IEnumerable<string> Cities { get; set; }
         public IEnumerable<SelectListItem> CityItems { get; set; }
@@ -53,12 +57,17 @@ namespace WebApp.Pages.Customers
             ICustomerRepository customerRepository, 
             ICityRepository cityRepository, 
             ICustomerGroupRepository customerGroupRepository,
-            INotyfService notyfService)
+            INotyfService notyfService,
+            IMemoryCache memoryCache,
+            IDistributedCache distributedCache
+            )
         {
             this.customerRepository = customerRepository;
             this.cityRepository = cityRepository;
             this.customerGroupRepository = customerGroupRepository;
             this.notyfService = notyfService;
+            this.memoryCache = memoryCache;
+            this.distributedCache = distributedCache;
         }
 
         public void OnGet()
@@ -68,7 +77,28 @@ namespace WebApp.Pages.Customers
 
         private void Load()
         {
-            Customer = customerRepository.Get(Id);
+            string key = $"customer-{Id}";
+
+            if (memoryCache.TryGetValue(key, out Customer customer))
+            {
+                Customer = customer;
+            }
+            else
+            {
+                Customer = customerRepository.Get(Id);
+
+                memoryCache.Set(key, Customer);
+            }
+
+            //string imie = distributedCache.GetString(key);
+
+            //if (imie==null)
+            //{
+            //    Customer = customerRepository.Get(Id);
+
+            //    distributedCache.SetString(key, Customer.FirstName);
+            //}
+
 
             Cities = cityRepository.Get();
 
