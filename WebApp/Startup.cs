@@ -86,11 +86,17 @@ namespace WebApp
             });
 
             /// services.AddMemoryCache();
-            services.AddDistributedRedisCache(options =>
-            {
-                options.Configuration = "localhost:6379";
-                options.InstanceName = "customers";
-            });
+
+
+            // REDIS
+            // Uruchomienie REDIS w kontenerze Dockera
+            // cmd> docker run --name shop-redis -d -p 6379:6379 redis
+
+            //services.AddDistributedRedisCache(options =>
+            //{
+            //    options.Configuration = "localhost:6379";
+            //    options.InstanceName = "customers";
+            //});
 
 
             // Install-Package Microsoft.EntityFrameworkCore.SqlServer
