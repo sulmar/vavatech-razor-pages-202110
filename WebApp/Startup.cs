@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -17,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vavatech.RazorPages.DbEfRepositories;
 using Vavatech.RazorPages.FakeRepositories;
 using Vavatech.RazorPages.InMemoryRepositories;
 using Vavatech.RazorPages.IRepositories;
@@ -39,11 +41,16 @@ namespace WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
-            services.AddSingleton<Faker<Customer>, CustomerFaker>();
+            //services.AddSingleton<ICustomerRepository, FakeCustomerRepository>();
+            //services.AddSingleton<Faker<Customer>, CustomerFaker>();
+
+            services.AddScoped<ICustomerRepository, DbCustomerRepository>();
+
             services.AddSingleton<Faker<Address>, AddressFaker>();
             services.AddSingleton<ICityRepository, FakeCityRepository>();
-            services.AddSingleton<ICustomerGroupRepository, FakeCustomerGroupRepository>();
+
+            // services.AddSingleton<ICustomerGroupRepository, FakeCustomerGroupRepository>();
+            services.AddScoped<ICustomerGroupRepository, DbCustomerGroupsRepository>();
 
             services.AddSingleton<IProductRepository, FakeProductRepository>();
             services.AddSingleton<Faker<Product>, ProductFaker>();
@@ -84,12 +91,26 @@ namespace WebApp
                 options.InstanceName = "customers";
             });
 
+
+            // Install-Package Microsoft.EntityFrameworkCore.SqlServer
+
+            string connectionString = Configuration.GetConnectionString("ShopConnectionString");
+            services.AddDbContext<ShopContext>(options => options.UseSqlServer(connectionString));
+
             
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ShopContext context)
         {
+            // context.Database.EnsureCreated();
+
+
+            // Install-Package Microsoft.EntityFramework.Tools
+
+            // PMC> Add-Migration Init
+           context.Database.Migrate();
+
             app.UseStaticFiles();
 
             app.UseNotyf();

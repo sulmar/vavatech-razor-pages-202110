@@ -10,6 +10,9 @@ namespace Vavatech.RazorPages.Models
         [StringLength(30, MinimumLength = 3, ErrorMessage = "Nazwisko powinno zawierać od 3 do 30 znaków")]
         [Required] 
         public string LastName { get; set; }
+
+        public string FullName { get; set; }
+
         [EmailAddress]        
         public string Email { get; set; }
         public Gender? Gender { get; set; }

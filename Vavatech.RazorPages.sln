@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.InMemor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.FakeRepositories", "Vavatech.RazorPages.FakeRepositories\Vavatech.RazorPages.FakeRepositories.csproj", "{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.DbEfRepositories", "Vavatech.RazorPages.DbEfRepositories\Vavatech.RazorPages.DbEfRepositories.csproj", "{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

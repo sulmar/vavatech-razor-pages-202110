@@ -10,10 +10,16 @@
   <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.11" />
     <PackageReference Include="Microsoft.Extensions.Caching.Redis" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Vavatech.RazorPages.DbEfRepositories\Vavatech.RazorPages.DbEfRepositories.csproj" />
     <ProjectReference Include="..\Vavatech.RazorPages.FakeRepositories\Vavatech.RazorPages.FakeRepositories.csproj" />
     <ProjectReference Include="..\Vavatech.RazorPages.InMemoryRepositories\Vavatech.RazorPages.InMemoryRepositories.csproj" />
     <ProjectReference Include="..\Vavatech.RazorPages.IRepositories\Vavatech.RazorPages.IRepositories.csproj" />
