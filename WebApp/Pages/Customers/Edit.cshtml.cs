@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,7 +14,8 @@ using Vavatech.RazorPages.Models;
 
 namespace WebApp.Pages.Customers
 {
-   // [IgnoreAntiforgeryToken]
+    [EnableCors]
+    // [IgnoreAntiforgeryToken]
     public class EditModel : PageModel
     {
         [BindProperty(SupportsGet = true)]
@@ -34,7 +36,8 @@ namespace WebApp.Pages.Customers
         public string Email { get; set; }
 
         [RestApiRemote(
-          ErrorMessage = "Podana strona nie istnieje",
+          Url= "https://localhost:5011/",
+          ErrorMessage = "Strona musi byæ z domeny .pl",
           HttpMethod = "post",
           AdditionalFields = "__RequestVerificationToken"
             )]

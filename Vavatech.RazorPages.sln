@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.InMemor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.FakeRepositories", "Vavatech.RazorPages.FakeRepositories\Vavatech.RazorPages.FakeRepositories.csproj", "{A6DAF23E-10C3-4DCB-A3D0-BBE74825A5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.DbEfRepositories", "Vavatech.RazorPages.DbEfRepositories\Vavatech.RazorPages.DbEfRepositories.csproj", "{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vavatech.RazorPages.DbEfRepositories", "Vavatech.RazorPages.DbEfRepositories\Vavatech.RazorPages.DbEfRepositories.csproj", "{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vavatech.RazorPages.Api", "Vavatech.RazorPages.Api\Vavatech.RazorPages.Api.csproj", "{82F16329-8A91-4C78-B4B0-4ABFD3C9FCC3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6F9A264-7A2C-4D0E-AB87-76E8D2E380DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82F16329-8A91-4C78-B4B0-4ABFD3C9FCC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82F16329-8A91-4C78-B4B0-4ABFD3C9FCC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82F16329-8A91-4C78-B4B0-4ABFD3C9FCC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82F16329-8A91-4C78-B4B0-4ABFD3C9FCC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -110,6 +110,14 @@ namespace WebApp
             services.AddSignalR();
 
             services.AddPageMemoryCache();
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("https://localhost:5011", "http://localhost:5010");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -127,6 +135,8 @@ namespace WebApp
             app.UseNotyf();
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseSession();
 
